@@ -276,7 +276,11 @@ export function CharacterSelect({
                     </div>
                 )}
                 <div className="space-y-2">
-                    {characters.map((char) => {
+                    {[...characters].sort((a, b) => {
+                        if (a.id === "silva") return -1;
+                        if (b.id === "silva") return 1;
+                        return Number(!!a.disabled) - Number(!!b.disabled);
+                    }).map((char) => {
                         const available = isAvailable(char);
                         const statusLabel = char.disabled
                             ? "Unavailable"
