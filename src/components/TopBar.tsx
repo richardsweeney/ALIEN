@@ -95,8 +95,8 @@ export function TopBar({
                                         key={c.id}
                                         onClick={() => onGmCharChange(c.id)}
                                         className={`px-3 py-2 rounded text-xs font-bold text-left transition-colors ${gmCharId === c.id
-                                                ? "bg-green-900/60 border border-green-600 text-green-400"
-                                                : "bg-gray-800 border border-gray-700 text-gray-400 active:bg-gray-700"
+                                            ? "bg-green-900/60 border border-green-600 text-green-400"
+                                            : "bg-gray-800 border border-gray-700 text-gray-400 active:bg-gray-700"
                                             }`}
                                     >
                                         {c.name}
@@ -120,7 +120,7 @@ export function TopBar({
                                     <div className="space-y-2">
                                         {characters.map((char) => (
                                             <div key={char.id} className="flex items-center gap-3">
-                                                <span className="text-green-400 text-sm font-bold w-28 shrink-0">
+                                                <span className={`text-sm font-bold w-28 shrink-0 ${char.disabled ? "text-gray-600 line-through" : "text-green-400"}`}>
                                                     {char.name}
                                                 </span>
                                                 <select
@@ -137,6 +137,15 @@ export function TopBar({
                                                         </option>
                                                     ))}
                                                 </select>
+                                                <button
+                                                    onClick={() => updateCharacter({ ...char, disabled: !char.disabled })}
+                                                    className={`text-xs font-bold px-2 py-1 rounded border shrink-0 ${char.disabled
+                                                        ? "bg-red-900/30 border-red-700 text-red-400"
+                                                        : "bg-gray-800 border-gray-600 text-gray-400"
+                                                        }`}
+                                                >
+                                                    {char.disabled ? "OFF" : "ON"}
+                                                </button>
                                             </div>
                                         ))}
                                     </div>

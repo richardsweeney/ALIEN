@@ -56,6 +56,23 @@ export const TALENT_DESCRIPTIONS: Record<string, string> = {
         "When you give a command to another PC or NPC, you can push your COMMAND roll even if you are not stressed. When you push, you do not gain a stress level.",
 };
 
+export const CHARACTER_BACKSTORIES: Record<string, string> = {
+    chaplain:
+        "You're in the Rifle Team along with Mason, responsible for firepower, medical support, and coordinating the squad's field objectives with command. You are openly an Android, a Hyperdyne 341-C Model Synthetic, and your old unit nicknamed you \"Charlie\" Chaplain. You played along, and used to slap on a false mustache to amuse them. Normally, you won't use a weapon unless necessary to immediately save lives. But now, you're of two minds about it — literally.",
+    dante:
+        "You're in the Assault Team along with Hammer. The Assault Team breaches doors, takes out security systems, and neutralises enemy encampments with heavy ordnance. Before this assignment you were part of an in-the-field urban pacification training program, but your squad was killed by friendly fire. Only you survived. You woke up in some special medlab at Fort Nebraska and have been there ever since.",
+    iona:
+        "You have been assigned a Support Role to Charlie Team. You're a rifleman but are trained in driving the APC. A beach lover from Oahu, you joined the marines to surf the waves of alien worlds. Instead, you were assigned to this ice moon. A veteran desk-pusher, you bitch that you're here to fight, not sit. In reality, you're terrified by the prospect of being assigned a mission that doesn't involve finding coffee supplies.",
+    zmijewski:
+        "Assigned to the mission's Support Team, you're a rifleman first and a vehicle operator second. People annoy you — they never pronounce your name right but now you've stopped caring. If pushed too far, you'll show them \"the belt you use for everything from killing vermin to fishing keys out of a sewer grate.\" You'll put it under a jerk's nose and ask them if they can smell it. If they say yes, you'll work things out. If they can't respect the belt, however, you'll beat them with it.",
+    hammer:
+        "You're in the Assault Team along with Dante. Designed for urban pacification, the Assault Team breaches doors, takes out security systems, and neutralises enemy encampments with heavy ordnance. An Artificial Womb soldier, you weren't born — you were grown in a vat and tailored to war. The USCMC raised you to be their weapon. You love the Corps and would gladly die — and more importantly kill — for it.",
+    mason:
+        "You're in the Rifle Team along with Chaplain, responsible for firepower, medical support, and coordinating the squad's field objectives with command. You grew up on the fringe of the radiological zone in Nevada. Fascinated by radiation's effects, you joined the Chemical Biological Radiological and Nuclear Incident Response Force. Unlike most of these kids here, you saw action during the '64 Tientsin Campaign. You've been dosed in blazing quintricycline, sifted through radioactive rubble for dirty bomb survivors and sterilised plague-ridden colonies.",
+    silva:
+        "As commander, you lead and coordinate the squad. A chain-smoker, you are also a Sin Eater — part of the 5th Colonial Marine Special Operations Regiment. When a black op is too dirty for the USCMC, the Sin Eaters are called. You have participated in covert ops that have changed the course of history. The fugitives are also Sin Eaters — and you're both saddened and embarrassed about it. Sin Eaters have a rep to live up to, and that doesn't leave room for traitors. But these Marines are your Marines, and they must be given the respect of brothers and sisters in arms, no matter how misguided they are.",
+};
+
 export const RULEBOOK_WEAPONS: Weapon[] = [
     { name: "M4A3 Service Pistol", bonus: 2, damage: 1, range: "Medium", fullAuto: false, skill: "Ranged Combat" },
     { name: ".357 Magnum", bonus: 1, damage: 2, range: "Medium", fullAuto: false, skill: "Ranged Combat" },
@@ -128,6 +145,7 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         criticalInjuries: [],
         assignedUserId: null,
         android: true,
+        disabled: false,
     },
     {
         id: "dante",
@@ -178,6 +196,7 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         armorRating: 6,
         encumbrance: 10,
         criticalInjuries: [],
+        disabled: false,
     },
     {
         id: "iona",
@@ -224,6 +243,7 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         armorRating: 6,
         encumbrance: 8,
         criticalInjuries: [],
+        disabled: false,
     },
     {
         id: "zmijewski",
@@ -273,6 +293,7 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         armorRating: 6,
         encumbrance: 8,
         criticalInjuries: [],
+        disabled: false,
     },
     {
         id: "hammer",
@@ -319,6 +340,7 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         armorRating: 6,
         encumbrance: 10,
         criticalInjuries: [],
+        disabled: false,
     },
     {
         id: "mason",
@@ -371,6 +393,7 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         armorRating: 6,
         encumbrance: 8,
         criticalInjuries: [],
+        disabled: false,
     },
     {
         id: "silva",
@@ -418,5 +441,6 @@ export const INITIAL_CHARACTERS: CharacterData[] = [
         armorRating: 6,
         encumbrance: 6,
         criticalInjuries: [],
+        disabled: false,
     },
 ];

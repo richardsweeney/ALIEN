@@ -38,6 +38,7 @@ export interface CharacterData {
     criticalInjuries: string[];
     assignedUserId: string | null;
     android: boolean;
+    disabled?: boolean;
 }
 
 export type Attribute = "strength" | "agility" | "wits" | "empathy";
