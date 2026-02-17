@@ -5,6 +5,21 @@ import { SkillRow } from "./SkillRow";
 
 const ATTRIBUTES: Attribute[] = ["strength", "agility", "wits", "empathy"];
 
+function Chevron({ open }: { open: boolean }) {
+    return (
+        <svg
+            className={`w-4 h-4 text-green-600 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="square"
+        >
+            <path d="M6 9l6 6 6-6" />
+        </svg>
+    );
+}
+
 function groupSkillsByAttr(): Record<Attribute, SkillDef[]> {
     const grouped: Record<Attribute, SkillDef[]> = {
         strength: [],
@@ -87,6 +102,47 @@ interface SkillsTabProps {
     char: CharacterData;
 }
 
+function SkillGroup({ attr, char, weaponsBySkill }: { attr: Attribute; char: CharacterData; weaponsBySkill: (name: string) => Weapon[] }) {
+    const [open, setOpen] = useState(true);
+
+    return (
+        <div>
+            <button
+                onClick={() => setOpen(!open)}
+                className="w-full flex items-center justify-between px-3 py-3 bg-gray-800/80 border-b border-gray-700 text-left"
+            >
+                <span className={`text-xs font-bold tracking-widest ${ATTR_COLORS[attr]}`}>
+                    {ATTR_LABELS[attr]} ({char[attr]})
+                </span>
+                <Chevron open={open} />
+            </button>
+            {open && GROUPED_SKILLS[attr]?.map((sk) => {
+                const weapons = weaponsBySkill(sk.name);
+                return (
+                    <div key={sk.name}>
+                        <SkillRow
+                            skillName={sk.name}
+                            skillLevel={char.skills[sk.name] || 0}
+                            attrValue={char[attr]}
+                            stress={char.stress}
+                        />
+                        {weapons.map((w) => (
+                            <WeaponRow
+                                key={w.name}
+                                weapon={w}
+                                attrValue={char[attr]}
+                                skillLevel={char.skills[sk.name] || 0}
+                                stress={char.stress}
+                                attrColor={ATTR_COLORS[attr]}
+                            />
+                        ))}
+                    </div>
+                );
+            })}
+        </div>
+    );
+}
+
 export function SkillsTab({ char }: SkillsTabProps) {
     const weaponsBySkill = (skillName: string) =>
         char.weapons.filter((w) => w.skill === skillName);
@@ -94,38 +150,7 @@ export function SkillsTab({ char }: SkillsTabProps) {
     return (
         <div className="bg-gray-900 border border-gray-700 rounded-b-lg rounded-tr-lg overflow-hidden mb-4">
             {ATTRIBUTES.map((attr) => (
-                <div key={attr}>
-                    <div className="px-3 py-1.5 bg-gray-800/80 border-b border-gray-700">
-                        <span
-                            className={`text-xs font-bold tracking-widest ${ATTR_COLORS[attr]}`}
-                        >
-                            {ATTR_LABELS[attr]} ({char[attr]})
-                        </span>
-                    </div>
-                    {GROUPED_SKILLS[attr]?.map((sk) => {
-                        const weapons = weaponsBySkill(sk.name);
-                        return (
-                            <div key={sk.name}>
-                                <SkillRow
-                                    skillName={sk.name}
-                                    skillLevel={char.skills[sk.name] || 0}
-                                    attrValue={char[attr]}
-                                    stress={char.stress}
-                                />
-                                {weapons.map((w) => (
-                                    <WeaponRow
-                                        key={w.name}
-                                        weapon={w}
-                                        attrValue={char[attr]}
-                                        skillLevel={char.skills[sk.name] || 0}
-                                        stress={char.stress}
-                                        attrColor={ATTR_COLORS[attr]}
-                                    />
-                                ))}
-                            </div>
-                        );
-                    })}
-                </div>
+                <SkillGroup key={attr} attr={attr} char={char} weaponsBySkill={weaponsBySkill} />
             ))}
         </div>
     );
