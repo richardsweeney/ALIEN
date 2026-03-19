@@ -109,7 +109,7 @@ export function TopBar({
                                     {characters.map((c) => (
                                         <button
                                             key={c.id}
-                                            onClick={() => onGmCharChange(c.id)}
+                                            onClick={() => { onGmCharChange(c.id); setMenuOpen(false); }}
                                             className={`px-3 py-2 rounded text-xs font-bold text-left transition-colors ${gmCharId === c.id
                                                 ? "bg-green-900/60 border border-green-600 text-green-400"
                                                 : "bg-gray-800 border border-gray-700 text-gray-400 active:bg-gray-700"

@@ -6,6 +6,7 @@ export interface Weapon {
     damage: number;
     range: string;
     fullAuto: boolean;
+    armorPiercing: boolean;
     skill: CombatSkill;
 }
 

@@ -30,6 +30,9 @@ export function WeaponsTab({ weapons }: WeaponsTabProps) {
                                 <span>
                                     Range: <span className="text-blue-400">{w.range}</span>
                                 </span>
+                                {w.armorPiercing && (
+                                    <span className="text-cyan-400">Armour Piercing</span>
+                                )}
                                 {w.fullAuto && (
                                     <span className="text-orange-400">Full Auto</span>
                                 )}

@@ -84,7 +84,7 @@ export function CharacterSheet({ char, onChange }: CharacterSheetProps) {
         <div className="max-w-2xl mx-auto">
             <button
                 onClick={() => setShowSummary(!showSummary)}
-                className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border border-gray-700 rounded-lg p-4 mb-4 text-left"
+                className="w-full bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 border border-gray-700 rounded-lg p-4 mb-4 text-left"
             >
                 <div className="flex items-start justify-between gap-4">
                     <div>
@@ -335,7 +335,7 @@ export function CharacterSheet({ char, onChange }: CharacterSheetProps) {
             </div>
 
             {activeTab === "skills" && (
-                <SkillsTab char={char} />
+                <SkillsTab char={char} onChange={onChange} />
             )}
 
             {activeTab === "gear" && (

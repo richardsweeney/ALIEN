@@ -39,6 +39,7 @@ export function GearTab({ gear, weapons, onAdd, onRemove, onAddWeapon, onRemoveW
                         <span className="text-gray-300 text-sm flex-1">{weapon.name}</span>
                         <span className="text-gray-500 text-xs shrink-0">
                             Dmg {weapon.damage} / {weapon.range}
+                            {weapon.armorPiercing && <span className="text-cyan-400 ml-1">Armour Piercing</span>}
                         </span>
                         <button
                             onClick={() => {
@@ -76,6 +77,7 @@ export function GearTab({ gear, weapons, onAdd, onRemove, onAddWeapon, onRemoveW
                                     <span className="text-gray-200 text-sm font-medium">{weapon.name}</span>
                                     <span className="text-gray-500 text-xs shrink-0 ml-2">
                                         Dmg {weapon.damage} / {weapon.range}
+                                        {weapon.armorPiercing && <span className="text-cyan-400 ml-1">Armour Piercing</span>}
                                     </span>
                                 </button>
                             ))}
